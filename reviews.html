@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reviews</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MOBILE MENU BUTTON -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<!-- MOBILE SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section>
+  <h2>Client Reviews for Riya Bhati</h2>
+
+  <form id="reviewForm" action="https://formspree.io/f/mgoznlbb" method="POST">
+
+    <input 
+      type="text" 
+      name="name" 
+      placeholder="Your Name" 
+      required>
+
+    <textarea 
+      name="review" 
+      placeholder="Your Review" 
+      required></textarea>
+
+    <!-- extra safety -->
+    <input type="hidden" name="_subject" value="New Makeup Review">
+
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('reviewForm');
+    const thankYouMsg = document.getElementById('thankYouMsg');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        thankYouMsg.style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
+
+  <p id="thankYouMsg" style="margin-top:10px; display:none;">
+  Thank you for your valuable feedback ❤️
+</p>
+</section>
+
+<footer>
+  <p>© 2026 RK Makeovers | All Rights Reserved</p>
+  <p>👩‍🎨 Makeup Artist: <strong>Riya Bhati</strong></p>
+  <p>📞 Contact: <strong>+91 8852866098</strong></p>
+
+  <div class="social-links">
+    <a href="https://www.instagram.com/rk_makeover_27?igsh=NzJzamg1Zm1mc3lt" target="_blank">
+      <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png" alt="Instagram">
+    </a>
+  </div>
+</footer>
+<a 
+  href="https://wa.me/918852866098?text=Hi%20I%20want%20to%20book%20makeup%20services" 
+  class="whatsapp-float" 
+  target="_blank">
+
+  <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png">
+  WhatsApp
+</a>
+<script src="script.js"></script>
+</body>
+</html>
